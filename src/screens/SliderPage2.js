@@ -1,16 +1,8 @@
-import { StyleSheet, Text, View, Image, BackHandler } from 'react-native'
-import React, { useEffect } from 'react'
-import SlideOne from '../assets/slide1.png';
+import { StyleSheet, Text, View, Image } from 'react-native'
+import React from 'react'
+import SlideOne from '../assets/slide2.png';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useFocusEffect } from '@react-navigation/native';
-const SliderPage1 = ({ navigation }) => {
-    useFocusEffect(
-        React.useCallback(() => {
-            const backHandler = BackHandler.addEventListener('hardwareBackPress', () => true)
-            return () => backHandler.remove()
-        }, [])
-    );
-
+const SliderPage2 = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <View style={styles.skipBtnWrapper}>
@@ -29,7 +21,7 @@ const SliderPage1 = ({ navigation }) => {
                 <Text style={styles.textStyle}>ABOUT <Text style={styles.brandText}>Pray UP!</Text></Text>
             </View>
             <View style={styles.btmTextWrapper}>
-                <Text style={styles.txtStyle}>Pray UP,a prayer app that allows you to play prayer audios</Text>
+                <Text style={styles.txtStyle}>Search and play the prayers anytime in any device. You can download the audio and listen to them offline!</Text>
             </View>
             <View style={styles.ImageBg}>
                 <Image
@@ -44,7 +36,7 @@ const SliderPage1 = ({ navigation }) => {
                     style={styles.nextBtn}
                     onPress={() => {
                         console.log('Next Pressed');
-                        navigation.navigate('SliderPage2');
+                        navigation.navigate('SliderPage3');
                     }}
 
                 >
@@ -58,7 +50,7 @@ const SliderPage1 = ({ navigation }) => {
     )
 }
 
-export default SliderPage1
+export default SliderPage2
 
 const styles = StyleSheet.create({
     container: {
@@ -77,11 +69,11 @@ const styles = StyleSheet.create({
     },
     sliderProgressIndicator: {
         position: 'absolute',
-        width: '33.33333%',
+        width: '33.3333%',
         height: 3,
         backgroundColor: 'black',
         top: -1.5,
-        left: '0%'
+        left: '33.3333%'
     },
     textWrapper: {
         justifyContent: 'center',
@@ -92,18 +84,19 @@ const styles = StyleSheet.create({
         fontSize: 26,
         color: 'black',
         fontWeight: '600',
-        fontFamily: "inter-Var",
-
+        fontFamily: "inter-Var"
     },
     brandText: {
         fontWeight: '900'
     },
     btmTextWrapper: {
         marginTop: 40,
-        marginBottom: 30,
+        marginBottom: 0,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingHorizontal: 50,
+        paddingHorizontal: 20,
+
+
     },
     txtStyle: {
         color: 'black',
@@ -116,7 +109,7 @@ const styles = StyleSheet.create({
     btnWrapper: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 30
+        marginTop: 40
     },
     nextBtn: {
         backgroundColor: '#BE9553',

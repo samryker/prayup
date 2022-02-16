@@ -14,6 +14,12 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		BB398C71CC70A4F27A6B8E46 /* libPods-PrayUp-PrayUpTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B1DC536E0A6CF0F785249F70 /* libPods-PrayUp-PrayUpTests.a */; };
+		EBA289C2B77E458A8392EFEF /* CormorantGaramond-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 33B116688E70413FAC95F0A1 /* CormorantGaramond-Bold.ttf */; };
+		456F4A853B264768A1AD6F5E /* CormorantGaramond-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DCE1D4730D53443AA21065A2 /* CormorantGaramond-Light.ttf */; };
+		A7A1CBADFF494A1D882AB476 /* CormorantGaramond-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AB4ADA4C61874B01BFB55D88 /* CormorantGaramond-Medium.ttf */; };
+		45F7B1D57D67477BAE173C29 /* CormorantGaramond-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7A4BABED274F40828AF04219 /* CormorantGaramond-Regular.ttf */; };
+		0A5735A84DA54B559C724B5E /* CormorantGaramond-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9B9BCC6790154502BC3E55DB /* CormorantGaramond-SemiBold.ttf */; };
+		62A5DE00129346DE95CEE0A3 /* inter-Var.ttf in Resources */ = {isa = PBXBuildFile; fileRef = DEC0AC58F50644C2874992D4 /* inter-Var.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +82,12 @@
 		FAE46945275428AC004A9949 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome5_Solid.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		FAE46946275428AC004A9949 /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = Octicons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/Octicons.ttf"; sourceTree = "<group>"; };
 		FAE46947275428AC004A9949 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = SimpleLineIcons.ttf; path = "../../node_modules/react-native-vector-icons/Fonts/SimpleLineIcons.ttf"; sourceTree = "<group>"; };
+		33B116688E70413FAC95F0A1 /* CormorantGaramond-Bold.ttf */ = {isa = PBXFileReference; name = "CormorantGaramond-Bold.ttf"; path = "../src/assets/fonts/CormorantGaramond-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DCE1D4730D53443AA21065A2 /* CormorantGaramond-Light.ttf */ = {isa = PBXFileReference; name = "CormorantGaramond-Light.ttf"; path = "../src/assets/fonts/CormorantGaramond-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		AB4ADA4C61874B01BFB55D88 /* CormorantGaramond-Medium.ttf */ = {isa = PBXFileReference; name = "CormorantGaramond-Medium.ttf"; path = "../src/assets/fonts/CormorantGaramond-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7A4BABED274F40828AF04219 /* CormorantGaramond-Regular.ttf */ = {isa = PBXFileReference; name = "CormorantGaramond-Regular.ttf"; path = "../src/assets/fonts/CormorantGaramond-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		9B9BCC6790154502BC3E55DB /* CormorantGaramond-SemiBold.ttf */ = {isa = PBXFileReference; name = "CormorantGaramond-SemiBold.ttf"; path = "../src/assets/fonts/CormorantGaramond-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		DEC0AC58F50644C2874992D4 /* inter-Var.ttf */ = {isa = PBXFileReference; name = "inter-Var.ttf"; path = "../src/assets/fonts/inter-Var.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +169,12 @@
 				C9E5B3A491B14190BDB3F8BB /* Octicons.ttf */,
 				2E88F3B61BA54681AC1F48A0 /* SimpleLineIcons.ttf */,
 				07B54E502DEB47CBA4C0335B /* Zocial.ttf */,
+				33B116688E70413FAC95F0A1 /* CormorantGaramond-Bold.ttf */,
+				DCE1D4730D53443AA21065A2 /* CormorantGaramond-Light.ttf */,
+				AB4ADA4C61874B01BFB55D88 /* CormorantGaramond-Medium.ttf */,
+				7A4BABED274F40828AF04219 /* CormorantGaramond-Regular.ttf */,
+				9B9BCC6790154502BC3E55DB /* CormorantGaramond-SemiBold.ttf */,
+				DEC0AC58F50644C2874992D4 /* inter-Var.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -324,6 +342,12 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				EBA289C2B77E458A8392EFEF /* CormorantGaramond-Bold.ttf in Resources */,
+				456F4A853B264768A1AD6F5E /* CormorantGaramond-Light.ttf in Resources */,
+				A7A1CBADFF494A1D882AB476 /* CormorantGaramond-Medium.ttf in Resources */,
+				45F7B1D57D67477BAE173C29 /* CormorantGaramond-Regular.ttf in Resources */,
+				0A5735A84DA54B559C724B5E /* CormorantGaramond-SemiBold.ttf in Resources */,
+				62A5DE00129346DE95CEE0A3 /* inter-Var.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

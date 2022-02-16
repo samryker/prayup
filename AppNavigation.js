@@ -12,7 +12,8 @@ import SignUp from './src/screens/SignUp';
 import BottomTabs from './src/components/BottomTabs';
 import AudioPlayer from './src/components/AudioPlayer';
 import SliderPage1 from './src/screens/SliderPage1';
-
+import SliderPage2 from './src/screens/SliderPage2';
+import SliderPage3 from './src/screens/SliderPage3';
 const Stack = createStackNavigator();
 // const Drawer = createDrawerNavigator();
 
@@ -21,9 +22,12 @@ const AuthStack = () => {
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
       initialRouteName="StartUpScreen">
-      <Stack.Screen name="StartUpScreen" component={SliderPage1} />
-      {/* <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="SignUp" component={SignUp} /> */}
+      <Stack.Screen name="StartUpScreen" component={StartUpScreen} />
+      <Stack.Screen name="Login" component={Login} />
+      <Stack.Screen name="SignUp" component={SignUp} />
+      <Stack.Screen name="SliderPage1" component={SliderPage1} />
+      <Stack.Screen name="SliderPage2" component={SliderPage2} />
+      <Stack.Screen name="SliderPage3" component={SliderPage3} />
     </Stack.Navigator>
   );
 };

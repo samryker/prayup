@@ -7,7 +7,7 @@ import {
   Image,
   TouchableOpacity,
 } from 'react-native';
-import {Images, Metrix, Colors, NavigationService} from '../config';
+import { Images, Metrix, Colors, NavigationService } from '../config';
 
 const StartUpScreen = () => {
   return (
@@ -32,7 +32,7 @@ const StartUpScreen = () => {
             ...styles.button,
           }}>
           <Text
-            style={{color: Colors.white, fontSize: Metrix.customFontSize(18)}}>
+            style={{ color: Colors.white, fontSize: Metrix.customFontSize(18) }}>
             Sign Up
           </Text>
         </TouchableOpacity>
@@ -44,7 +44,7 @@ const StartUpScreen = () => {
             ...styles.button,
           }}>
           <Text
-            style={{color: Colors.black, fontSize: Metrix.customFontSize(19)}}>
+            style={{ color: Colors.black, fontSize: Metrix.customFontSize(19) }}>
             Login
           </Text>
         </TouchableOpacity>

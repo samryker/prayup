@@ -88,7 +88,7 @@ const Login = () => {
           </View>
           <View style={{ marginTop: 20, marginBottom: 10 }}>
             <TouchableOpacity
-              onPress={() => NavigationService.navigate('BottomTabs')}
+              onPress={() => NavigationService.navigate('SliderPage1')}
               style={{
                 // bottom: 110,
                 backgroundColor: Colors.button,

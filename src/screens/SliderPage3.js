@@ -1,26 +1,19 @@
 import { StyleSheet, Text, View, Image, BackHandler } from 'react-native'
 import React, { useEffect } from 'react'
-import SlideOne from '../assets/slide1.png';
+import SlideOne from '../assets/slide3.png';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import { useFocusEffect } from '@react-navigation/native';
-const SliderPage1 = ({ navigation }) => {
-    useFocusEffect(
-        React.useCallback(() => {
-            const backHandler = BackHandler.addEventListener('hardwareBackPress', () => true)
-            return () => backHandler.remove()
-        }, [])
-    );
+const SliderPage3 = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.skipBtnWrapper}>
+            {/* <View style={styles.skipBtnWrapper}>
                 <TouchableOpacity
                     style={styles.skipBtn}
                     onPress={() => { console.log('Skip Pressed'); navigation.navigate('BottomTabs') }}
                 >
                     <Text style={styles.skipBtnText}>Skip</Text>
                 </TouchableOpacity>
-            </View>
+            </View> */}
             <View style={styles.sliderLine}>
                 <View style={styles.sliderProgressIndicator}></View>
             </View>
@@ -29,11 +22,11 @@ const SliderPage1 = ({ navigation }) => {
                 <Text style={styles.textStyle}>ABOUT <Text style={styles.brandText}>Pray UP!</Text></Text>
             </View>
             <View style={styles.btmTextWrapper}>
-                <Text style={styles.txtStyle}>Pray UP,a prayer app that allows you to play prayer audios</Text>
+                <Text style={styles.txtStyle}>Make as many playlists you want and recieve notifications to play them at any particular time.</Text>
             </View>
             <View style={styles.ImageBg}>
                 <Image
-                    style={{ height: 300, width: 400 }}
+                    style={{ height: 320, width: 400, marginLeft: 60 }}
                     resizeMethod="resize"
                     source={SlideOne}
                     resizeMode="cover"
@@ -44,11 +37,11 @@ const SliderPage1 = ({ navigation }) => {
                     style={styles.nextBtn}
                     onPress={() => {
                         console.log('Next Pressed');
-                        navigation.navigate('SliderPage2');
+                        navigation.navigate('BottomTabs');
                     }}
 
                 >
-                    <Text style={styles.btnText}>Next</Text>
+                    <Text style={styles.btnText}>Finish</Text>
                 </TouchableOpacity>
             </View>
 
@@ -58,7 +51,7 @@ const SliderPage1 = ({ navigation }) => {
     )
 }
 
-export default SliderPage1
+export default SliderPage3
 
 const styles = StyleSheet.create({
     container: {
@@ -77,11 +70,11 @@ const styles = StyleSheet.create({
     },
     sliderProgressIndicator: {
         position: 'absolute',
-        width: '33.33333%',
+        width: '33.3333%',
         height: 3,
         backgroundColor: 'black',
         top: -1.5,
-        left: '0%'
+        left: '66.3333%'
     },
     textWrapper: {
         justifyContent: 'center',
@@ -92,18 +85,19 @@ const styles = StyleSheet.create({
         fontSize: 26,
         color: 'black',
         fontWeight: '600',
-        fontFamily: "inter-Var",
-
+        fontFamily: "inter-Var"
     },
     brandText: {
         fontWeight: '900'
     },
     btmTextWrapper: {
         marginTop: 40,
-        marginBottom: 30,
+        marginBottom: 10,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingHorizontal: 50,
+        paddingHorizontal: 20,
+
+
     },
     txtStyle: {
         color: 'black',
@@ -112,6 +106,7 @@ const styles = StyleSheet.create({
         textAlign: 'center'
     },
     ImageBg: {
+        justifyContent: 'center',
     },
     btnWrapper: {
         justifyContent: 'center',
