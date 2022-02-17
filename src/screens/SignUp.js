@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   ImageBackground,
@@ -8,16 +8,48 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
-import {Images, Metrix, Colors} from '../config';
+import { Images, Metrix, Colors } from '../config';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Fontisto from 'react-native-vector-icons/Fontisto';
 import Entypo from 'react-native-vector-icons/Entypo';
+import { useDispatch, useSelector } from "react-redux";
+import { signUpUser } from '../redux/Reducers/user.actions';
 
-const SignUp = () => {
-  const [username, setUsername] = useState('');
+
+const mapState = ({ user }) => ({
+  currentProperty: user.currentProperty,
+  propertySignUpSuccess: user.propertySignUpSuccess,
+  errors: user.errors,
+});
+
+
+const SignUp = ({ navigation }) => {
+
+  console.log("Property Register Screen");
+  const { currentProperty, propertySignUpSuccess, errors } =
+    useSelector(mapState);
+  const dispatch = useDispatch();
+
+
+  const [firstName, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
+
+
+  useEffect(() => {
+    if (propertySignUpSuccess) {
+      navigation.navigate("SliderPage1");
+    }
+  }, [propertySignUpSuccess]);
+
+
+  const handleRegister = async (e) => {
+    var checking_form = "true";
+    if (checking_form === "true") {
+      dispatch(signUpUser({ firstName, email, password }));
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -30,7 +62,7 @@ const SignUp = () => {
         <View style={styles.container2}>
           <Image
             source={require('../assets/maleUser.png')}
-            style={{resizeMode: 'contain', width: 80, height: 80}}
+            style={{ resizeMode: 'contain', width: 80, height: 80 }}
           />
           <View
             style={{
@@ -48,7 +80,7 @@ const SignUp = () => {
                 paddingHorizontal: 15,
                 paddingVertical: 3,
               }}>
-              <Text style={{color: '#fff'}}>Male</Text>
+              <Text style={{ color: '#fff' }}>Male</Text>
             </TouchableOpacity>
             <TouchableOpacity
               style={{
@@ -58,7 +90,7 @@ const SignUp = () => {
                 paddingHorizontal: 15,
                 paddingVertical: 3,
               }}>
-              <Text style={{color: '#fff'}}>Female</Text>
+              <Text style={{ color: '#fff' }}>Female</Text>
             </TouchableOpacity>
           </View>
           <View
@@ -120,7 +152,7 @@ const SignUp = () => {
               placeholder={'Username'}
               placeholderTextColor={Colors.lighGray}
               onChangeText={text => setUsername(text)}
-              value={username}
+              value={firstName}
               style={styles.input}
             />
           </View>
@@ -146,7 +178,7 @@ const SignUp = () => {
               style={styles.input}
             />
           </View>
-          <View style={{width: '100%'}}>
+          <View style={{ width: '100%' }}>
             <TouchableOpacity
               style={{
                 alignSelf: 'flex-end',
@@ -160,9 +192,9 @@ const SignUp = () => {
               </Text>
             </TouchableOpacity>
           </View>
-          <View style={{marginTop: 20, marginBottom: 10}}>
+          <View style={{ marginTop: 20, marginBottom: 10 }}>
             <TouchableOpacity
-              // onPress={() => }
+              onPress={handleRegister}
               style={{
                 // bottom: 110,
                 backgroundColor: Colors.button,
@@ -177,7 +209,7 @@ const SignUp = () => {
               </Text>
             </TouchableOpacity>
           </View>
-          <Text style={{color: Colors.white}}>
+          <Text style={{ color: Colors.white }}>
             with your social media network
           </Text>
           <View
@@ -189,17 +221,17 @@ const SignUp = () => {
               marginTop: 20,
             }}>
             <TouchableOpacity
-              style={{backgroundColor: Colors.white, ...styles.socialButton}}>
+              style={{ backgroundColor: Colors.white, ...styles.socialButton }}>
               <Image
                 source={Images.Google}
-                style={{resizeMode: 'contain', height: 25, width: 25}}
+                style={{ resizeMode: 'contain', height: 25, width: 25 }}
               />
             </TouchableOpacity>
             <TouchableOpacity
-              style={{backgroundColor: '#1653C9', ...styles.socialButton}}>
+              style={{ backgroundColor: '#1653C9', ...styles.socialButton }}>
               <Image
                 source={Images.Facebook}
-                style={{resizeMode: 'contain', height: 25, width: 25}}
+                style={{ resizeMode: 'contain', height: 25, width: 25 }}
               />
             </TouchableOpacity>
           </View>

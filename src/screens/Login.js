@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
+  Alert,
   ImageBackground,
   StyleSheet,
   Text,
@@ -11,10 +12,53 @@ import {
 import { Images, Metrix, Colors, NavigationService } from '../config';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Fontisto from 'react-native-vector-icons/Fontisto';
+import { useDispatch, useSelector } from "react-redux";
+import { signInUser } from '../redux/Reducers/user.actions';
 
-const Login = () => {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+const mapState = ({ user }) => ({
+  currentProperty: user.currentProperty,
+  propertySignInSuccess: user.propertySignInSuccess,
+  errors: user.errors,
+});
+const Login = ({ navigation }) => {
+
+  const { currentProperty, propertySignInSuccess, errors } =
+    useSelector(mapState);
+  const dispatch = useDispatch();
+
+  const [email, setUsername] = useState('oussama@gmail.com');
+  const [password, setPassword] = useState('123123');
+  // const [checking_form, setChecking_form] = useState(true);
+
+
+
+  useEffect(() => {
+    if (propertySignInSuccess && currentProperty) {
+      navigation.navigate("SliderPage1");
+    }
+  }, [propertySignInSuccess]);
+
+
+  const handleLogin = async (e) => {
+
+
+    var checking_form = "true";
+    if ((password.length < 6)) {
+
+      console.log("* Password Field Required, 6 caracter min", password);
+      Alert.alert("* Password Field Required, 6 caracter min", password);
+      checking_form = "false";
+    } else {
+      console.log("Nice as well");
+      Alert.alert("Nice as well")
+      console.log("* Password Field Required, 6 caracter min", email, 'why not there', password);
+    }
+    if (checking_form === "true") {
+      dispatch(signInUser({ email, password }));
+    }
+  };
+
+
 
   return (
     <View style={styles.container}>
@@ -46,7 +90,7 @@ const Login = () => {
               placeholder={'Username'}
               placeholderTextColor={Colors.lighGray}
               onChangeText={text => setUsername(text)}
-              value={username}
+              value={email}
               style={styles.input}
             />
           </View>
@@ -88,12 +132,12 @@ const Login = () => {
           </View>
           <View style={{ marginTop: 20, marginBottom: 10 }}>
             <TouchableOpacity
-              onPress={() => NavigationService.navigate('SliderPage1')}
               style={{
                 // bottom: 110,
                 backgroundColor: Colors.button,
                 ...styles.button,
-              }}>
+              }}
+              onPress={handleLogin}>
               <Text
                 style={{
                   color: Colors.white,
@@ -102,6 +146,7 @@ const Login = () => {
                 Login
               </Text>
             </TouchableOpacity>
+
           </View>
           <Text style={{ color: Colors.white }}>
             with your social media network
