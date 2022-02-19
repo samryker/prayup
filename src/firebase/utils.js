@@ -2,7 +2,7 @@ import { initializeApp, getApps } from 'firebase/app';
 import { getAuth } from 'firebase/auth';
 import { getFirestore } from 'firebase/firestore';
 import { getStorage } from 'firebase/storage';
-
+import { initializeFirestore } from 'firebase/firestore';
 const firebaseConfig = {
     apiKey: "AIzaSyASWCp7arimbwaLVanhGhZucNFWhVE-s10",
     authDomain: "prayup-9efba.firebaseapp.com",
@@ -14,9 +14,11 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-initializeApp(firebaseConfig);
+const app = initializeApp(firebaseConfig);
 const auth = getAuth();
-const db = getFirestore();
+const db = initializeFirestore(app, {
+    experimentalForceLongPolling: true,
+});
 const storage = getStorage();
 const getapps = getApps();
 export { auth, db, storage, getApps };

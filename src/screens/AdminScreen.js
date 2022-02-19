@@ -4,7 +4,7 @@ import { Colors, Images } from '../config';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import ProfileButtons from '../components/ProfileButtons';
 
-const Profile = () => {
+const AdminScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.topView}>
@@ -31,7 +31,7 @@ const Profile = () => {
               />
             </View>
           </View>
-          <Text style={{ color: Colors.white, fontSize: 24 }}>John Doe</Text>
+          <Text style={{ color: Colors.white, fontSize: 24 }}>Admin</Text>
           <Text
             style={{
               color: Colors.backGray,
@@ -39,7 +39,7 @@ const Profile = () => {
               fontStyle: 'italic',
               textDecorationLine: 'underline',
             }}>
-            johndoe@prayup.com
+            Admin
           </Text>
         </View>
       </View>
@@ -119,4 +119,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Profile;
+export default AdminScreen;

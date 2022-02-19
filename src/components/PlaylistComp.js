@@ -1,12 +1,22 @@
-import React from 'react';
-import {View, Text, TouchableOpacity, StyleSheet, Image} from 'react-native';
-import {Colors, Images, Metrix} from '../config';
-import Feather from 'react-native-vector-icons/Feather';
+import React, { useEffect, useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { Colors, Images, Metrix } from '../config';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import { useRoute } from '@react-navigation/native';
+const PlaylistComp = ({ onPress, songTitle, free, album, playing, AddToFavouriteIfNotIn, val, navigation }) => {
+  const route = useRoute();
+  const [showOrNot, setShowOrNot] = useState(false)
+  useEffect(() => {
+    if (route.name === 'Search') {
+      setShowOrNot(true)
+    }
 
-const PlaylistComp = ({onPress, songTitle, free, album, playing}) => {
+
+  }, [route.name])
+
   return (
     <TouchableOpacity onPress={onPress} style={styles.container} activeOpacity={0.7}>
-      <View style={{flexDirection: 'row'}}>
+      <View style={{ flexDirection: 'row' }}>
         <View
           style={{
             ...styles.view,
@@ -32,14 +42,14 @@ const PlaylistComp = ({onPress, songTitle, free, album, playing}) => {
             justifyContent: 'center',
           }}>
           <View>
-            <Text style={{fontWeight: 'bold'}}>{songTitle}</Text>
-            <View style={{flexDirection: 'row'}}>
+            <Text style={{ fontWeight: 'bold' }}>{songTitle}</Text>
+            <View style={{ flexDirection: 'row' }}>
               {free ? (
-                <Text style={{color: Colors.green, fontWeight: 'bold'}}>
+                <Text style={{ color: Colors.green, fontWeight: 'bold' }}>
                   Free
                 </Text>
               ) : (
-                <Text style={{color: Colors.red, fontWeight: 'bold'}}>Pro</Text>
+                <Text style={{ color: Colors.red, fontWeight: 'bold' }}>Pro</Text>
               )}
               <Text
                 style={{
@@ -53,21 +63,21 @@ const PlaylistComp = ({onPress, songTitle, free, album, playing}) => {
         </View>
       </View>
       <View
-        style={{alignItems: 'center', justifyContent: 'center'}}
+        style={{ alignItems: 'center', justifyContent: 'center' }}
         onPress={onPress}>
-        {playing ? (
-          <Feather
-            name={'pause'}
-            color={Colors.primary}
-            size={Metrix.customFontSize(36)}
-          />
-        ) : (
-          <Feather
-            name={'play'}
-            color={Colors.primary}
-            size={Metrix.customFontSize(36)}
-          />
-        )}
+        {
+          showOrNot ? (<TouchableOpacity
+            onPress={() => AddToFavouriteIfNotIn(val)}
+          >
+            <MaterialIcons
+              name={'favorite-border'}
+              color={Colors.primary}
+              size={Metrix.customFontSize(36)}
+            />
+          </TouchableOpacity>) : (null)
+        }
+
+
       </View>
     </TouchableOpacity>
   );

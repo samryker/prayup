@@ -7,6 +7,8 @@ const INITIAL_STATE = {
   propertyRecoverySuccess: false,
   // Fetch
   fetchUserD: null,
+  userLoggedId: null,
+  isAdmin: false,
   // Errors
   errors: [],
 };
@@ -19,6 +21,9 @@ const userReducer = (state = INITIAL_STATE, action) => {
         ...state,
         propertySignInSuccess: action.payload,
         currentProperty: true,
+        isAdmin: action.isAdmin,
+        userLoggedId: action.userId,
+
       };
     case userTypes.USER_SIGN_UP_SUCCESS:
       return {

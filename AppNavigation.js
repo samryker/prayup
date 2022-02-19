@@ -14,6 +14,7 @@ import AudioPlayer from './src/components/AudioPlayer';
 import SliderPage1 from './src/screens/SliderPage1';
 import SliderPage2 from './src/screens/SliderPage2';
 import SliderPage3 from './src/screens/SliderPage3';
+
 const Stack = createStackNavigator();
 // const Drawer = createDrawerNavigator();
 

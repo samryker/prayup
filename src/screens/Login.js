@@ -19,22 +19,31 @@ const mapState = ({ user }) => ({
   currentProperty: user.currentProperty,
   propertySignInSuccess: user.propertySignInSuccess,
   errors: user.errors,
+  isAdmin: user.isAdmin
 });
 const Login = ({ navigation }) => {
 
-  const { currentProperty, propertySignInSuccess, errors } =
+  const { currentProperty, propertySignInSuccess, errors, isAdmin } =
     useSelector(mapState);
   const dispatch = useDispatch();
 
-  const [email, setUsername] = useState('oussama@gmail.com');
-  const [password, setPassword] = useState('123123');
+  const [email, setUsername] = useState('realadmin1@gmail.com');
+  const [password, setPassword] = useState('admin123');
   // const [checking_form, setChecking_form] = useState(true);
 
 
 
   useEffect(() => {
     if (propertySignInSuccess && currentProperty) {
-      navigation.navigate("SliderPage1");
+      if (isAdmin) {
+        console.log(isAdmin);
+        navigation.navigate("BottomTabs");
+      }
+      else {
+        console.log(isAdmin);
+        navigation.navigate("SliderPage1");
+      }
+
     }
   }, [propertySignInSuccess]);
 
@@ -50,7 +59,6 @@ const Login = ({ navigation }) => {
       checking_form = "false";
     } else {
       console.log("Nice as well");
-      Alert.alert("Nice as well")
       console.log("* Password Field Required, 6 caracter min", email, 'why not there', password);
     }
     if (checking_form === "true") {

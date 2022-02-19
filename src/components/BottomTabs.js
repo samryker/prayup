@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -25,11 +25,33 @@ import PlaylistComp from './PlaylistComp';
 import { TrackAction } from '../redux/Actions';
 import { useDispatch } from 'react-redux';
 import { NavigationService } from "../config";
+import AdminScreen from '../screens/AdminScreen'
+
+
+const mapState = ({ user }) => ({
+  currentProperty: user.currentProperty,
+  propertySignInSuccess: user.propertySignInSuccess,
+  errors: user.errors,
+  isAdmin: user.isAdmin,
+});
+
+
+
 
 const BottomTabs = () => {
+
+  const { currentProperty, propertySignInSuccess, errors, isAdmin, userLoggedId } =
+    useSelector(mapState);
   const dispatch = useDispatch();
   const Tab = createBottomTabNavigator();
   const track = useSelector(state => state?.TrackReducer?.data);
+  useEffect(() => {
+    console.log(isAdmin)
+    console.log('this one is not undefined ? ', currentProperty)
+
+
+  }, [isAdmin])
+
   return (
     <>
       {track && (
@@ -116,8 +138,8 @@ const BottomTabs = () => {
           }}
         />
         <Tab.Screen
-          name="Profile"
-          component={Profile}
+          name={`${isAdmin} ? 'Admin' :'Profile'`}
+          component={!isAdmin ? Profile : AdminScreen}
           options={{
             tabBarIcon: ({ focused }) => (
               <View style={{ alignItems: 'center', justifyContent: 'center' }}>

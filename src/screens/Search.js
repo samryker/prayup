@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -17,80 +17,80 @@ import PlaylistComp from '../components/PlaylistComp';
 import Modal from 'react-native-modal';
 // import CheckBox from '@react-native-community/checkbox';
 import Checkbox from "expo-checkbox";
+import { useDispatch, useSelector } from 'react-redux';
+import { collection, query, where, getDocs, onSnapshot, addDoc } from "firebase/firestore";
+import { db } from '../firebase/utils'
+
+const mapState = ({ user }) => ({
+  currentProperty: user.currentProperty,
+  propertySignInSuccess: user.propertySignInSuccess,
+  errors: user.errors,
+  isAdmin: user.isAdmin,
+  userLoggedId: user.userLoggedId
+});
 
 const Search = () => {
+
   const [search, setSearch] = useState();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isSelected, setIsSelected] = useState();
-  let data = [
-    {
-      song: 'Worship and Praise',
-      free: true,
-      album: 'Vocalist and band',
-    },
-    {
-      song: 'Worship and Praise',
-      free: false,
-      album: 'Vocalist and band',
-    },
-    {
-      song: 'Worship and Praise',
-      free: true,
-      album: 'Vocalist and band',
-    },
-    {
-      song: 'Worship and Praise',
-      free: true,
-      album: 'Vocalist and band',
-    },
-    {
-      song: 'Worship and Praise',
-      free: false,
-      album: 'Vocalist and band',
-    },
-    {
-      song: 'Worship and Praise',
-      free: true,
-      album: 'Vocalist and band',
-    },
-    {
-      song: 'Worship and Praise',
-      free: false,
-      album: 'Vocalist and band',
-    },
-    {
-      song: 'Worship and Praise',
-      free: true,
-      album: 'Vocalist and band',
-    },
-    {
-      song: 'Worship and Praise',
-      free: true,
-      album: 'Vocalist and band',
-    },
-    {
-      song: 'Worship and Praise',
-      free: false,
-      album: 'Vocalist and band',
-    },
-    {
-      song: 'Worship and Praise',
-      free: true,
-      album: 'Vocalist and band',
-    },
-  ];
+  const { currentProperty, propertySignInSuccess, errors, isAdmin, userLoggedId } =
+    useSelector(mapState);
+
+  const [prayers, setPrayers] = useState([]);
+  const [prayersIds, setPrayersIds] = useState([]);
+  const getData = async () => {
+    const q = query(collection(db, "prayers"));
+    try {
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data());
+        setPrayersIds((oldArray) => [...oldArray, doc.id])
+        setPrayers((oldPrayer) => [...oldPrayer, doc.data()])
+        // setMyFiles((oldArray) => [...oldArray, obj]);
+      });
+    } catch (err) {
+      console.log('my error', err)
+    }
+  }
+
+  useEffect(() => {
+    getData().then(
+      console.log('this is our data', prayers)
+    );
+
+
+  }, [])
+
+
+
+  const AddToFavouriteIfNotIn = async (val) => {
+    // const docRef = await addDoc(doc(db, `playlists/${userLoggedId}/favourites`, user.uid), {
+    const q = query(collection(db, `playlists/${userLoggedId}/favourites`));
+    const querySnapshot = await getDocs(q);
+    querySnapshot ? console.log('yess it"s exist') : console.log('no it"s not exist');
+    const docRef = await addDoc(collection(db, `playlists/${userLoggedId}/favourites`), {
+      url: val.url,
+      title: val.title,
+      artist: val.artist,
+      free: val.free,
+      album: val.album,
+      duration: val.duration,
+    });
+  }
 
   return (
     <View style={styles.container}>
       <View style={styles.searchBar}>
-        <TouchableOpacity onPress={() => setIsModalVisible(!isModalVisible)}>
+        {/* <TouchableOpacity onPress={() => setIsModalVisible(!isModalVisible)}>
           <Fontisto
             name={'equalizer'}
             color={Colors.white}
             size={20}
             style={{ transform: [{ rotate: '90deg' }] }}
           />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <View style={styles.input}>
           <Feather name={'search'} color={Colors.lighGray} size={20} />
           <TextInput
@@ -122,12 +122,14 @@ const Search = () => {
           <Text style={{ fontWeight: 'bold' }}>Most Played</Text>
         </View>
         <View style={{ paddingHorizontal: 20 }}>
-          {data &&
-            data.map((val, index) => {
+          {prayers &&
+            prayers.map((val, index) => {
               return (
-                <View style={{ flex: 1, marginBottom: Metrix.VerticalSize(10) }}>
+                <View key={index} style={{ flex: 1, marginBottom: Metrix.VerticalSize(10) }}>
                   <PlaylistComp
-                    onPress={() => console.warn('pressed')}
+                    onPress={() => console('lets see now')}
+                    AddToFavouriteIfNotIn={AddToFavouriteIfNotIn}
+                    val={val}
                     songTitle={val.song}
                     free={val.free}
                     album={val.album}
@@ -223,3 +225,4 @@ const styles = StyleSheet.create({
 });
 
 export default Search;
+

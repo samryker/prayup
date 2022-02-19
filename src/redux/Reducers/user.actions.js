@@ -7,7 +7,7 @@ import {
   signOut,
 } from "firebase/auth";
 // import uuid from "react-native-uuid";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, doc, setDoc, where, getDocs, query } from "firebase/firestore";
 
 // AUTHENTICATION
 export const recoveryUser =
@@ -48,16 +48,41 @@ export const signOutUser = () => async (dispatch) => {
   }
 };
 
+
+const getTheUserRule = async (userSignInId) => {
+  console.log("this is the user logged in", userSignInId);
+  const q = query(collection(db, "users"), where("rule", "==", 1));
+  console.log("hi ther we are 55");
+  let isAdmin = false;
+  const querySnapshot = await getDocs(q);
+  querySnapshot.forEach((doc) => {
+    if (doc.id === userSignInId) {
+      console.log('yes is admin');
+      isAdmin = true;
+    }
+    else {
+      console.log('no is not an admin');
+    }
+  });
+  return isAdmin;
+};
+
+
 export const signInUser =
   ({ email, password }) =>
     async (dispatch) => {
       try {
         console.log("From Sign In action");
         await signInWithEmailAndPassword(auth, email, password)
-          .then(() => {
+          .then(async () => {
+            const user = auth.currentUser;
+            const isUserAdmin = await getTheUserRule(user.uid);
+            console.log("isUserAdmin", isUserAdmin);
             dispatch({
               type: userTypes.USER_SIGN_IN_SUCCESS,
               payload: true,
+              userId: user.uid,
+              isAdmin: isUserAdmin,
             });
           })
           .catch((err) => {
@@ -100,17 +125,19 @@ export const signUpUser =
       try {
         console.log("Line 118 ACTION");
         await createUserWithEmailAndPassword(auth, email, password)
-          .then(async () => {
+          .then(async (userCredential) => {
+            const user = userCredential.user;
+            console.log(user.uid);
             console.log("Line 122 ACTION");
-            // const docRef = await addDoc(collection(db, "users"), {
-            //   rule: rule,
-            //   fullname: firstName,
-            //   email: email,
-            //   password: password,
-            //   createdAt: createdAt,
-            //   updatedAt: updatedAt,
-            //   deletedAt: deletedAt,
-            // });
+            const docRef = await setDoc(doc(db, "users", user.uid), {
+              rule: rule,
+              fullname: firstName,
+              email: email,
+              password: password,
+              createdAt: createdAt,
+              updatedAt: updatedAt,
+              deletedAt: deletedAt,
+            });
             // console.log("Document written with ID: ", docRef.id);
             dispatch({
               type: userTypes.USER_SIGN_UP_SUCCESS,

@@ -1,13 +1,15 @@
-import React, {useState, useEffect} from 'react';
-import {View, Text, StyleSheet, ScrollView} from 'react-native';
-import {Colors, Metrix, NavigationService} from '../config';
+import React, { useState, useEffect } from 'react';
+import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { Colors, Metrix, NavigationService } from '../config';
 import AlbumComp from '../components/AlbumComp';
 import PlaylistComp from '../components/PlaylistComp';
 import TrackPlayer from 'react-native-track-player';
 import AppPlayer from '../config/AppPlayer';
 import AudioPlayer from '../components/AudioPlayer';
-import {useDispatch} from 'react-redux';
-
+import { useDispatch } from 'react-redux';
+// Firebase Imports 
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { db } from '../firebase/utils'
 const Home = () => {
   const [selectedTrack, setSelectedTrack] = useState(null);
   const data = [
@@ -117,6 +119,30 @@ const Home = () => {
   useEffect(() => {
     AppPlayer.initializePlayer({});
   }, []);
+  const [prayers, setPrayers] = useState([]);
+  const getData = async () => {
+    const q = query(collection(db, "prayers"));
+    try {
+      const querySnapshot = await getDocs(q);
+      querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        console.log(doc.id, " => ", doc.data());
+        setPrayers((oldPrayer) => [...oldPrayer, doc.data()])
+        // setMyFiles((oldArray) => [...oldArray, obj]);
+      });
+    } catch (err) {
+      console.log('my error', err)
+    }
+
+  }
+  useEffect(() => {
+    getData().then(
+      console.log('this is our data', prayers)
+    );
+
+  }, []);
+
+
 
   const onTrackItemPress = async (track: TrackPlayer.Track) => {
     await TrackPlayer.stop();
@@ -125,7 +151,7 @@ const Home = () => {
     NavigationService.navigate('AudioPlayer');
     dispatch({
       type: 'ALL_TRACKS',
-      payload: data,
+      payload: prayers,
     });
   };
 
@@ -167,12 +193,12 @@ const Home = () => {
           customAlbum={true}
         />
       </View>
-      {data &&
-        data.map((val, index) => {
+      {prayers &&
+        prayers.map((val, index) => {
           return (
             <View
               key={index.toString()}
-              style={{flex: 1, marginBottom: Metrix.VerticalSize(10)}}>
+              style={{ flex: 1, marginBottom: Metrix.VerticalSize(10) }}>
               <PlaylistComp
                 onPress={() => {
                   // setTrackPlaying(!trackPlaying);
@@ -185,7 +211,7 @@ const Home = () => {
                 songTitle={val.title}
                 free={val.free}
                 album={val.album}
-                // playing={selectedTrack ? trackPlaying : false}
+              // playing={selectedTrack ? trackPlaying : false}
               />
             </View>
           );
