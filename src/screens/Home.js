@@ -172,7 +172,7 @@ const Home = () => {
 
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.album}>
+      {/* <View style={styles.album}>
         <AlbumComp
           onPress={() => console.warn('pressed')}
           title={'Prayer Album'}
@@ -181,7 +181,7 @@ const Home = () => {
           onPress={() => console.warn('pressed')}
           title={'Prayer Album'}
         />
-      </View>
+      </View> */}
       <View style={styles.album}>
         <AlbumComp
           onPress={() => console.warn('pressed')}

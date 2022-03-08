@@ -38,16 +38,33 @@ const Search = () => {
     useSelector(mapState);
 
   const [prayers, setPrayers] = useState([]);
+  const [heart, setHeart] = useState(false);
   const [prayersIds, setPrayersIds] = useState([]);
+  const getOurFavListIds = async () => {
+    const q2 = query(collection(db, `playlists/${userLoggedId}/favourites`));
+    const querySnapshot2 = await getDocs(q2);
+    querySnapshot2.forEach((doc) => {
+      console.log('show 47 ,', doc.data());
+      let thisId = doc.data().superId;
+      setPrayersIds((oldArray1) => [...oldArray1, thisId]);
+
+    });
+    console.log('our ids of favorites prayers', prayersIds)
+  }
   const getData = async () => {
+    console.log('our ids of favorites prayers', prayersIds)
     const q = query(collection(db, "prayers"));
     try {
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
         // doc.data() is never undefined for query doc snapshots
-        console.log(doc.id, " => ", doc.data());
-        setPrayersIds((oldArray) => [...oldArray, doc.id])
-        setPrayers((oldPrayer) => [...oldPrayer, doc.data()])
+        var favOrNo = false;
+        if (prayersIds.includes(doc.data().id)) {
+          favOrNo = true;
+        }
+        let thisData = doc.data();
+        thisData.favOrNot = favOrNo;
+        setPrayers((oldPrayer) => [...oldPrayer, thisData])
         // setMyFiles((oldArray) => [...oldArray, obj]);
       });
     } catch (err) {
@@ -55,12 +72,17 @@ const Search = () => {
     }
   }
 
+
   useEffect(() => {
-    getData().then(
-      console.log('this is our data', prayers)
-    );
+
+    getData();
 
 
+
+    console.log('prayers : 77', prayers)
+
+    getOurFavListIds()
+    console.log('Fav ids : 77', prayersIds)
   }, [])
 
 
@@ -77,6 +99,7 @@ const Search = () => {
       free: val.free,
       album: val.album,
       duration: val.duration,
+      superId: val.superId,
     });
   }
 
@@ -133,6 +156,7 @@ const Search = () => {
                     songTitle={val.song}
                     free={val.free}
                     album={val.album}
+                    heart={val.favOrNot}
                   />
                 </View>
               );

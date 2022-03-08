@@ -4,7 +4,7 @@ import { Colors, Images } from '../config';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import ProfileButtons from '../components/ProfileButtons';
 
-const Profile = () => {
+const Profile = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.topView}>
@@ -55,7 +55,7 @@ const Profile = () => {
         <ProfileButtons
           title={'Prayers'}
           imageUri={Images.profileMusic}
-          onPress={() => console.warn('Pressed')}
+          onPress={() => navigation.navigate('BottomTabs')}
         />
         <ProfileButtons
           title={'Custom Prayers'}
@@ -67,21 +67,21 @@ const Profile = () => {
           imageUri={Images.profilePlaylist2}
           onPress={() => console.warn('Pressed')}
         />
-        <ProfileButtons
+        {/* <ProfileButtons
           title={'Album'}
           imageUri={Images.profileRecord}
           onPress={() => console.warn('Pressed')}
-        />
+        /> */}
         <ProfileButtons
           title={'Notifications'}
           imageUri={Images.profileAlarm}
           onPress={() => console.warn('Pressed')}
         />
-        <ProfileButtons
+        {/* <ProfileButtons
           title={'Downloads'}
           imageUri={Images.profileInsert}
           onPress={() => console.warn('Pressed')}
-        />
+        /> */}
       </ScrollView>
     </View>
   );

@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Image, BackHandler } from 'react-native'
 import React, { useEffect } from 'react'
-import SlideOne from '../assets/slide3.png';
+import SlideOne from '../assets/custom.png';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 const SliderPage3 = ({ navigation }) => {
 
@@ -14,7 +14,7 @@ const SliderPage3 = ({ navigation }) => {
                     <Text style={styles.skipBtnText}>Skip</Text>
                 </TouchableOpacity>
             </View> */}
-            <View style={styles.sliderLine}>
+            {/* <View style={styles.sliderLine}>
                 <View style={styles.sliderProgressIndicator}></View>
             </View>
             <View style={styles.textWrapper}>
@@ -31,7 +31,13 @@ const SliderPage3 = ({ navigation }) => {
                     source={SlideOne}
                     resizeMode="cover"
                 />
-            </View>
+            </View> */}
+            <Image
+                style={{ height: '95%', width: '100%', justifyContent: 'center', alignItems: 'flex-start' }}
+                resizeMethod="resize"
+                source={SlideOne}
+                resizeMode="contain"
+            />
             <View style={styles.btnWrapper}>
                 <TouchableOpacity
                     style={styles.nextBtn}

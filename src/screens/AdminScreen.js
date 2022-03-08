@@ -8,7 +8,7 @@ const AdminScreen = () => {
   return (
     <View style={styles.container}>
       <View style={styles.topView}>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           style={{
             width: '100%',
             alignItems: 'flex-end',
@@ -16,7 +16,7 @@ const AdminScreen = () => {
             paddingHorizontal: 20,
           }}>
           <FontAwesome name={'pencil'} size={25} color={Colors.white} />
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <View style={{ alignItems: 'center', justifyContent: 'center' }}>
           <View style={styles.imageView}>
             <View style={styles.imageView2}>
@@ -43,7 +43,7 @@ const AdminScreen = () => {
           </Text>
         </View>
       </View>
-      <ScrollView style={{ paddingTop: 10 }}>
+      {/* <ScrollView style={{ paddingTop: 10 }}>
         <View style={{ marginBottom: 20 }}>
           <ProfileButtons
             title={'Upgrade'}
@@ -82,7 +82,7 @@ const AdminScreen = () => {
           imageUri={Images.profileInsert}
           onPress={() => console.warn('Pressed')}
         />
-      </ScrollView>
+      </ScrollView> */}
     </View>
   );
 };

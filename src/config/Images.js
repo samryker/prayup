@@ -1,7 +1,7 @@
 export default Images = {
   settings: require('../assets/settings.png'),
   background: require('../assets/background.png'),
-  Logo: require('../assets/Logo.png'),
+  Logo: require('../assets/Logo1.png'),
   Rectangle: require('../assets/Rectangle.png'),
   user: require('../assets/user.png'),
   Google: require('../assets/Google.png'),

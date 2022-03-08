@@ -74,7 +74,7 @@ const BottomTabs = () => {
         </View>
       )}
       <Tab.Navigator
-        tabBarOptions={{ showLabel: false, keyboardHidesTabBar: true }}
+        // tabBarOptions={{ showLabel: true, keyboardHidesTabBar: true }}
         screenOptions={({ route }) => ({
           headerShown: false,
           activeTintColor: 'blue',
@@ -86,12 +86,17 @@ const BottomTabs = () => {
           },
           keyboardHidesTabBar: true,
           tabBarStyle: {
-            height: Metrix.VerticalSize(70),
+            height: Metrix.VerticalSize(100),
             paddingHorizontal: Metrix.HorizontalSize(5),
-            paddingTop: 0,
+            paddingTop: 10,
+            paddingBottom: 20,
             backgroundColor: Colors.primary,
             position: 'absolute',
             borderTopWidth: 0,
+          },
+          tabBarLabelStyle: {
+            fontSize: 18,
+            color: 'white',
           },
         })}>
         <Tab.Screen
@@ -99,13 +104,14 @@ const BottomTabs = () => {
           component={Home}
           headerShown={false}
           options={{
+            tabBarLabel: 'Library',
             tabBarIcon: ({ focused }) => (
               <View
                 style={{
                   alignItems: 'center',
                   justifyContent: 'center',
                   width: 60,
-                  height: 60,
+                  // height: 60,
                   borderRadius: 30 / 2,
                   backgroundColor: focused ? '#fffff' : Colors.primary,
                   // padding: 10
@@ -138,7 +144,7 @@ const BottomTabs = () => {
           }}
         />
         <Tab.Screen
-          name={`${isAdmin} ? 'Admin' :'Profile'`}
+          name={`${isAdmin ? 'Admin' : 'Profile'}  `}
           component={!isAdmin ? Profile : AdminScreen}
           options={{
             tabBarIcon: ({ focused }) => (

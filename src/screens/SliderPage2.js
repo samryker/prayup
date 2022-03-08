@@ -1,11 +1,11 @@
 import { StyleSheet, Text, View, Image } from 'react-native'
 import React from 'react'
-import SlideOne from '../assets/slide2.png';
+import SlideOne from '../assets/profil.png';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 const SliderPage2 = ({ navigation }) => {
     return (
         <View style={styles.container}>
-            <View style={styles.skipBtnWrapper}>
+            {/* <View style={styles.skipBtnWrapper}>
                 <TouchableOpacity
                     style={styles.skipBtn}
                     onPress={() => { console.log('Skip Pressed'); navigation.navigate('BottomTabs') }}
@@ -30,7 +30,13 @@ const SliderPage2 = ({ navigation }) => {
                     source={SlideOne}
                     resizeMode="cover"
                 />
-            </View>
+            </View> */}
+            <Image
+                style={{ height: '95%', width: '100%', justifyContent: 'center', alignItems: 'flex-start' }}
+                resizeMethod="resize"
+                source={SlideOne}
+                resizeMode="contain"
+            />
             <View style={styles.btnWrapper}>
                 <TouchableOpacity
                     style={styles.nextBtn}

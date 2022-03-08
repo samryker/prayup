@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View, Image, BackHandler } from 'react-native'
 import React, { useEffect } from 'react'
-import SlideOne from '../assets/slide1.png';
+import SlideOne from '../assets/home1.png';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useFocusEffect } from '@react-navigation/native';
 const SliderPage1 = ({ navigation }) => {
@@ -13,7 +13,7 @@ const SliderPage1 = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <View style={styles.skipBtnWrapper}>
+            {/* <View style={styles.skipBtnWrapper}>
                 <TouchableOpacity
                     style={styles.skipBtn}
                     onPress={() => { console.log('Skip Pressed'); navigation.navigate('BottomTabs') }}
@@ -38,7 +38,13 @@ const SliderPage1 = ({ navigation }) => {
                     source={SlideOne}
                     resizeMode="cover"
                 />
-            </View>
+            </View> */}
+            <Image
+                style={{ height: '95%', width: '100%', justifyContent: 'center', alignItems: 'flex-start' }}
+                resizeMethod="resize"
+                source={SlideOne}
+                resizeMode="contain"
+            />
             <View style={styles.btnWrapper}>
                 <TouchableOpacity
                     style={styles.nextBtn}
@@ -72,7 +78,7 @@ const styles = StyleSheet.create({
         width: '70%',
         backgroundColor: 'black',
         height: 1,
-        marginLeft: '15%',
+        marginLeft: '5%',
         position: 'relative',
     },
     sliderProgressIndicator: {
@@ -86,7 +92,7 @@ const styles = StyleSheet.create({
     textWrapper: {
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 30
+        marginTop: 3
     },
     textStyle: {
         fontSize: 26,
@@ -99,11 +105,11 @@ const styles = StyleSheet.create({
         fontWeight: '900'
     },
     btmTextWrapper: {
-        marginTop: 40,
+        marginTop: 4,
         marginBottom: 30,
         justifyContent: 'center',
         alignItems: 'center',
-        paddingHorizontal: 50,
+        paddingHorizontal: 2,
     },
     txtStyle: {
         color: 'black',

@@ -69,11 +69,18 @@ const PlaylistComp = ({ onPress, songTitle, free, album, playing, AddToFavourite
           showOrNot ? (<TouchableOpacity
             onPress={() => AddToFavouriteIfNotIn(val)}
           >
-            <MaterialIcons
+            {val.favOrNot ? (
+              <MaterialIcons
+                name={'favorite'}
+                color={Colors.primary}
+                size={Metrix.customFontSize(36)}
+              />
+            ) : (<MaterialIcons
               name={'favorite-border'}
               color={Colors.primary}
               size={Metrix.customFontSize(36)}
-            />
+            />)}
+
           </TouchableOpacity>) : (null)
         }
 
