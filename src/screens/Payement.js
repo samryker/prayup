@@ -43,7 +43,7 @@ const Payement = ({ navigation }) => {
                             fontStyle: 'italic',
                             textDecorationLine: 'underline',
                         }}>
-                        01 April 2022
+                        04 April 2022
                     </Text>
                 </View>
             </View>

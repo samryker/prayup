@@ -1,10 +1,30 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, ScrollView } from 'react-native';
 import { Colors, Images } from '../config';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import ProfileButtons from '../components/ProfileButtons';
-
+import { collection, query, where, getDocs } from "firebase/firestore";
+import { db } from '../firebase/utils';
+import Feather from 'react-native-vector-icons/Feather';
 const AdminScreen = () => {
+
+  const [requests, setRequests] = useState([])
+  var arrayReqs = [];
+  const getRequests = async () => {
+    const q = query(collection(db, "prayersRequests"));
+    const querySnapshot = await getDocs(q);
+    querySnapshot.forEach((doc) => {
+      arrayReqs.push(doc.data())
+      console.log(doc.id, " => ", doc.data());
+
+    });
+    setRequests(arrayReqs);
+  }
+  useEffect(() => {
+
+    getRequests();
+  }, [])
+
   return (
     <View style={styles.container}>
       <View style={styles.topView}>
@@ -39,54 +59,65 @@ const AdminScreen = () => {
               fontStyle: 'italic',
               textDecorationLine: 'underline',
             }}>
-            Admin
+
           </Text>
+        </View>
+
+
+      </View>
+      <View style={{ paddingTop: 10, justifyContent: 'center', alignItems: 'center' }}>
+        <Text style={styles.TitleStyle}>List Of Requests</Text>
+        <View style={styles.requestsCards}>
+          {
+            requests.map((item) => (
+              <View style={styles.requestsCardsCard}>
+                <Text style={styles.TitStyle}>User Request : {item.requestText}</Text>
+                <TouchableOpacity style={{}}>
+                  <Feather name={'file-plus'} color={Colors.primary} size={22} />
+                </TouchableOpacity>
+              </View>
+            ))
+          }
+
         </View>
       </View>
       {/* <ScrollView style={{ paddingTop: 10 }}>
         <View style={{ marginBottom: 20 }}>
-          <ProfileButtons
-            title={'Upgrade'}
-            upgrade={true}
-            imageUri={Images.profileStar}
-            onPress={() => console.warn('Pressed')}
-          />
-        </View>
-        <ProfileButtons
-          title={'Prayers'}
-          imageUri={Images.profileMusic}
-          onPress={() => console.warn('Pressed')}
-        />
-        <ProfileButtons
-          title={'Custom Prayers'}
-          imageUri={Images.profilePlaylist}
-          onPress={() => console.warn('Pressed')}
-        />
-        <ProfileButtons
-          title={'Playlist'}
-          imageUri={Images.profilePlaylist2}
-          onPress={() => console.warn('Pressed')}
-        />
-        <ProfileButtons
-          title={'Album'}
-          imageUri={Images.profileRecord}
-          onPress={() => console.warn('Pressed')}
-        />
-        <ProfileButtons
-          title={'Notifications'}
-          imageUri={Images.profileAlarm}
-          onPress={() => console.warn('Pressed')}
-        />
-        <ProfileButtons
-          title={'Downloads'}
-          imageUri={Images.profileInsert}
-          onPress={() => console.warn('Pressed')}
-        />
+
       </ScrollView> */}
     </View>
   );
 };
 const styles = StyleSheet.create({
+  TitStyle: {
+    fontSize: 18,
+    paddingBottom: 15,
+  },
+  requestsCards: {
+    width: '100%',
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 20,
+
+
+  },
+  requestsCardsCard: {
+    paddingVertical: 5,
+    borderWidth: 3,
+    borderColor: Colors.primary,
+    width: '80%',
+    height: 80,
+    borderRadius: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginBottom: 20,
+
+  },
+  TitleStyle: {
+    fontWeight: 'bold',
+    fontSize: 22,
+
+  },
   container: {
     flex: 1,
     backgroundColor: Colors.backGray,

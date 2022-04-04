@@ -1,10 +1,19 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, Modal, TextInput, Pressable } from 'react-native';
 import { Colors, Images, Metrix } from '../config';
-
+import { doc, setDoc } from "firebase/firestore";
+import { db } from '../firebase/utils';
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 const AskPrayer = ({ navigation }) => {
     const [prayerName, setPrayerName] = useState('');
     const [modalVisible, setModalVisible] = useState(false);
+    const auth = getAuth();
+    const user = auth.currentUser;
+    const addRequestToFirebase = async (p) => {
+        await setDoc(doc(db, "prayersRequests", user.uid), {
+            requestText: p
+        });
+    }
     return (
         <View style={styles.container}>
             <View style={styles.topView}>
@@ -58,7 +67,11 @@ const AskPrayer = ({ navigation }) => {
                             backgroundColor: Colors.primary,
                             ...styles.button,
                         }}
-                        onPress={() => setModalVisible(true)}>
+                        onPress={() => {
+                            addRequestToFirebase(prayerName);
+                            setModalVisible(true);
+                            setPrayerName('')
+                        }}>
                         <Text
                             style={{
                                 color: Colors.white,
@@ -93,7 +106,7 @@ const AskPrayer = ({ navigation }) => {
                     </View>
                 </Modal>
             </View>
-        </View>
+        </View >
     );
 };
 const styles = StyleSheet.create({
