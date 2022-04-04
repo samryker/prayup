@@ -49,7 +49,7 @@ const Profile = ({ navigation }) => {
             title={'Upgrade'}
             upgrade={true}
             imageUri={Images.profileStar}
-            onPress={() => console.warn('Pressed')}
+            onPress={() => navigation.navigate('Payment')}
           />
         </View>
         <ProfileButtons
@@ -60,7 +60,7 @@ const Profile = ({ navigation }) => {
         <ProfileButtons
           title={'Custom Prayers'}
           imageUri={Images.profilePlaylist}
-          onPress={() => console.warn('Pressed')}
+          onPress={() => navigation.navigate('AskPrayer')}
         />
         <ProfileButtons
           title={'Playlist'}

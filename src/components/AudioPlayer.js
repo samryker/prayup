@@ -191,14 +191,14 @@ const AudioPlayer = props => {
         <Slider
           style={{ width: '70%', height: 40 }}
           minimumValue={0}
-          maximumValue={track ? track.duration : 0}
+          maximumValue={track ? parseInt(track.duration) : 0}
           minimumTrackTintColor={Colors.primary}
           maximumTrackTintColor="#000"
           thumbTintColor={Colors.primary}
           value={progress.position}
         />
         <Text>
-          {AppPlayer.secondsToHHMMSS(track ? track.duration || 0 : 0)}
+          {AppPlayer.secondsToHHMMSS(track ? track.url.duration || 0 : 0)}
         </Text>
       </View>
       <View style={buttonsSection}>

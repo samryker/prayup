@@ -14,6 +14,9 @@ import AudioPlayer from './src/components/AudioPlayer';
 import SliderPage1 from './src/screens/SliderPage1';
 import SliderPage2 from './src/screens/SliderPage2';
 import SliderPage3 from './src/screens/SliderPage3';
+import Payement from './src/screens/Payement';
+import PremiumScreen from './src/screens/PremiumScreen';
+import AskPrayer from './src/screens/AskPrayer';
 
 const Stack = createStackNavigator();
 // const Drawer = createDrawerNavigator();
@@ -61,6 +64,9 @@ class AppNavigation extends React.Component {
             <Stack.Screen name="AuthStack" component={AuthStack} />
             <Stack.Screen name="BottomTabs" component={BottomTabs} />
             <Stack.Screen name="CustomPrayers" component={CustomPrayers} />
+            <Stack.Screen name="Payment" component={Payement} />
+            <Stack.Screen name="PremiumScreen" component={PremiumScreen} />
+            <Stack.Screen name="AskPrayer" component={AskPrayer} />
             <Stack.Screen name="AudioPlayer" component={AudioPlayer} />
           </Stack.Navigator>
         </NavigationContainer>
