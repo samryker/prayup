@@ -72,7 +72,7 @@ const AdminScreen = () => {
             requests.map((item) => (
               <View style={styles.requestsCardsCard}>
                 <Text style={styles.TitStyle}>User Request : {item.requestText}</Text>
-                <TouchableOpacity style={{}}>
+                <TouchableOpacity >
                   <Feather name={'file-plus'} color={Colors.primary} size={22} />
                 </TouchableOpacity>
               </View>

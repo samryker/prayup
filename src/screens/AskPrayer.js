@@ -44,11 +44,12 @@ const AskPrayer = ({ navigation }) => {
                     <Text
                         style={{
                             color: Colors.backGray,
-                            fontSize: 20,
-                            fontStyle: 'italic',
+                            fontSize: 18,
+                            // fontStyle: 'italic',
                             textDecorationLine: 'underline',
+                            textAlign: 'center'
                         }}>
-
+                        Here you can request custom prayer  for yourself and your special ones "
                     </Text>
                 </View>
             </View>

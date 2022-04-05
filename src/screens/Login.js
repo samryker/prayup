@@ -27,8 +27,8 @@ const Login = ({ navigation }) => {
     useSelector(mapState);
   const dispatch = useDispatch();
 
-  const [email, setUsername] = useState('realadmin1@gmail.com');
-  const [password, setPassword] = useState('admin123');
+  const [email, setUsername] = useState('prayupuser@gmail.com'); //realadmin1@gmail.com
+  const [password, setPassword] = useState('123123');
   // const [checking_form, setChecking_form] = useState(true);
 
 

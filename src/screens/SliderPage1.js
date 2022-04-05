@@ -3,6 +3,8 @@ import React, { useEffect } from 'react'
 import SlideOne from '../assets/home1.png';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useFocusEffect } from '@react-navigation/native';
+import Video from 'react-native-video';
+import Intro from '../assets/intro.mp4';
 const SliderPage1 = ({ navigation }) => {
     useFocusEffect(
         React.useCallback(() => {
@@ -13,53 +15,24 @@ const SliderPage1 = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            {/* <View style={styles.skipBtnWrapper}>
-                <TouchableOpacity
-                    style={styles.skipBtn}
-                    onPress={() => { console.log('Skip Pressed'); navigation.navigate('BottomTabs') }}
-                >
-                    <Text style={styles.skipBtnText}>Skip</Text>
-                </TouchableOpacity>
-            </View>
-            <View style={styles.sliderLine}>
-                <View style={styles.sliderProgressIndicator}></View>
-            </View>
-            <View style={styles.textWrapper}>
-                <Text style={styles.textStyle}>GET TO KNOW</Text>
-                <Text style={styles.textStyle}>ABOUT <Text style={styles.brandText}>Pray UP!</Text></Text>
-            </View>
-            <View style={styles.btmTextWrapper}>
-                <Text style={styles.txtStyle}>Pray UP,a prayer app that allows you to play prayer audios</Text>
-            </View>
-            <View style={styles.ImageBg}>
-                <Image
-                    style={{ height: 300, width: 400 }}
-                    resizeMethod="resize"
-                    source={SlideOne}
-                    resizeMode="cover"
-                />
-            </View> */}
-            <Image
-                style={{ height: '95%', width: '100%', justifyContent: 'center', alignItems: 'flex-start' }}
-                resizeMethod="resize"
-                source={SlideOne}
-                resizeMode="contain"
-            />
-            <View style={styles.btnWrapper}>
-                <TouchableOpacity
-                    style={styles.nextBtn}
-                    onPress={() => {
-                        console.log('Next Pressed');
-                        navigation.navigate('SliderPage2');
-                    }}
+            <TouchableOpacity
+                style={styles.nextBtn}
+                onPress={() => {
+                    console.log('Next Pressed');
+                    navigation.navigate('BottomTabs');
+                }}
 
-                >
-                    <Text style={styles.btnText}>Next</Text>
-                </TouchableOpacity>
-            </View>
+            >
+                <Text style={styles.btnText}>Get Started</Text>
+            </TouchableOpacity>
 
 
-            {/* <Text>SliderPage1</Text> */}
+
+            <Video source={Intro}
+                paused={false}
+                repeat={true}
+                resizeMode='contain'
+                style={styles.backgroundVideo} />
         </View>
     )
 }
@@ -67,12 +40,23 @@ const SliderPage1 = ({ navigation }) => {
 export default SliderPage1
 
 const styles = StyleSheet.create({
+    backgroundVideo: {
+        position: 'absolute',
+        top: '10%',
+        left: 0,
+        bottom: 0,
+        right: 0,
+        height: '90%',
+        width: '100%',
+    },
     container: {
         width: '100%',
         height: '100%',
         backgroundColor: '#DED9C1',
-        paddingVertical: 80,
+        paddingVertical: 0,
         position: 'relative',
+        alignItems: 'center'
+
     },
     sliderLine: {
         width: '70%',
@@ -126,7 +110,7 @@ const styles = StyleSheet.create({
     },
     nextBtn: {
         backgroundColor: '#BE9553',
-        width: 110,
+        width: 200,
         height: 50,
         justifyContent: 'center',
         alignItems: 'center',
@@ -139,7 +123,8 @@ const styles = StyleSheet.create({
         shadowRadius: 4.65,
 
         elevation: 7,
-        borderRadius: 16
+        borderRadius: 16,
+        marginTop: 15
     },
     btnText: {
         color: '#fff',
