@@ -24,6 +24,7 @@ allprojects {
         jcenter() {
             content {
                 includeGroup("com.google.android.exoplayer")
+                includeModule("com.yqritc", "android-scalablevideoview")
             }
         }
         mavenCentral()
